@@ -1,0 +1,57 @@
+---
+title: "PsetSkills4"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+libraries
+```{r}
+library(tidyr)
+library(dplyr)
+```
+
+
+
+
+1.1.1
+There are 3 rules that make dataset tidy,each variable has their own columns,each observations has their own row, each value must have its own cell.
+```{r}
+View(billboard)
+
+```
+This data is tidy as it has one column for each variable (artist, track, data, and week),
+It has one row for each obeservation and finally it has one cell for each observation. The missing values (na) are important as they tell us when a particular track was not on the top 100 billboard list
+
+1.1.2 
+
+```{r}
+View(fish_encounters)
+```
+
+Again, this data is not tidy tidy. It has one column for each variable (fish, station, seen).  Hoever it does not have one row for each observation as not seen is not registered and there is therefore one cell for each measurement (seen).
+
+This has to be fixed.
+
+
