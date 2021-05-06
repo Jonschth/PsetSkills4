@@ -90,3 +90,42 @@ pivot_longer(Messi:Griezmann,
 When they pivot_wider command is issued, the variables become Messi and Griesman.
 When the pivot_longer command is issues, two new variables are created and their names are "player" and "goals".  The names go (i.e the Messi and Griesman are put in one column under the  "player" variable and the values in the table become the values of the "goals" variable.
 
+1.1.5.
+
+```{r}
+table4a
+
+table4a %>%
+pivot_longer("1999":"2000",
+names_to = "year",
+values_to = "cases")
+
+```
+a number cannot be a variable name so it has to be a text
+
+
+1.1.6
+
+```{r}
+soccer <- tribble(
+~player, ~game,~game_no,~goals,
+"Messi", "Real Sociedad","game1",2,
+"Messi", "Huesca","game2",2,
+"Messi", "Real Sociedad","game3",0,
+"Messi", "Huesca","game4",1,
+"Griezmann", "Real Sociedad","game1",1,
+"Griezmann", "Huesca","game2",1,
+)
+
+
+soccer
+
+
+soccer %>%
+pivot_wider(names_from = player, 
+            values_from = goals,
+            values_fill = 0) 
+
+```
+
+
