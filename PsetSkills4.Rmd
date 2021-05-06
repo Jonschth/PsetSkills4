@@ -50,8 +50,36 @@ It has one row for each obeservation and finally it has one cell for each observ
 View(fish_encounters)
 ```
 
-Again, this data is not tidy tidy. It has one column for each variable (fish, station, seen).  Hoever it does not have one row for each observation as not seen is not registered and there is therefore one cell for each measurement (seen).
+Again, this data is tidy. It has one column for each variable (fish, station, seen).  It also has one row observation and finally it has one cell for each measurement.
 
-This has to be fixed.
+The data set has a missing set which is ovservations were the fish has not been observed.  As an example take fish 4865.  It has not been seen at Rstr.  Similarly fish 4864 has not been seen at Lisbon etc.
+
+One way to remedy this might be to enter new rows for these "non" observations. This can be done rather cleverly as follows: 
+
+```{r}
+fish_encounters %>% pivot_wider(
+  names_from = station, 
+  values_from = seen,
+  values_fill = 0
+)
+```
+
+
+
+1.1.3
+```{r}
+
+View(us_rent_income)
+```
+In this table each observation has two rows (income, rent) and the margin of error.  It is therefore not tidy and this needs to be fixed
+
+```{r}
+us_rent_income %>%
+    pivot_wider(
+      names_from = variable, values_from = c(estimate,moe))
+```
+
+
+
 
 
