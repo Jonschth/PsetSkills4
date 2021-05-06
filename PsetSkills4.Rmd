@@ -63,7 +63,30 @@ us_rent_income %>%
       names_from = variable, values_from = c(estimate,moe))
 ```
 
+1.1.4
 
+soccer <- tibble(
+game = c("Real Sociedad", "Real Sociedad", "Huesca", "Huesca"),
+player = c("Messi", "Griezmann", "Messi", "Griezmann"),
+goals = c(2,1,2,1)
+)
 
+```{r}
+soccer <- tibble(
+game = c("Real Sociedad", "Real Sociedad", "Huesca", "Huesca"),
+player = c("Messi", "Griezmann", "Messi", "Griezmann"),
+goals = c(2,1,2,1)
+)
 
+View(soccer)
+
+soccer %>%
+pivot_wider(names_from = player, 
+            values_from = goals) %>%
+pivot_longer(Messi:Griezmann,
+             names_to = "player",
+             values_to = "goals") 
+```
+When they pivot_wider command is issued, the variables become Messi and Griesman.
+When the pivot_longer command is issues, two new variables are created and their names are "player" and "goals".  The names go (i.e the Messi and Griesman are put in one column under the  "player" variable and the values in the table become the values of the "goals" variable.
 
