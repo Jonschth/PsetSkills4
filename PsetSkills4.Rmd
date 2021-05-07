@@ -241,7 +241,7 @@ who2 %>%
   summarise(N=sum(is.na(cases)))
 ```
 
-After the tibble has been tidied, the number of rows is 405,440.  When we count the number of rows where the number of cases is na we get 329,394 and this is there fore the number of explicitly missing values
+After the tibble has been tidied, the number of rows is 405,440.  When we count the number of rows where the number of cases is na we get 329,394 and this is there fore the number of explicitly missing values.
 
 
 
@@ -256,5 +256,39 @@ the original who table has 7240 rows.  When we run complete on it by country hea
 If we look at the tidy table and we run complete on it, the number of rows increases from 76,046 to 80,008 so the implicitly missing rows (where cases are na) are 3962
 
 
+1.2.2
+
+
+```{r}
+who1 <- who %>%
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases", 
+    values_drop_na = TRUE
+  ) %>% 
+  mutate(
+    key = stringr::str_replace(key, "newrel", "new_rel")
+  ) %>%
+  separate(key, c("new", "var", "sexage")) %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+
+who1
+```
+
+The reason that we need to change "newrel" to "new_rel", is that we use the underscore to seperate combined variable names.  When seperate cannot find _ it cannot separte the variable names
+
+
+1.2.4
+
+1.2.4.1
+
+```{r}
+who1 %>%
+  select(country, year, sex, cases) %>%
+  group_by(country, year,sex) %>%
+  summarise(n=sum(cases))
+```
 
 
