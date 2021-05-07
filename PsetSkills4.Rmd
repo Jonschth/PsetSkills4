@@ -372,7 +372,7 @@ str_view(stringr::words, "^a|^o",match=TRUE)
 str_view(words, "^[^aeiou]+$", match=TRUE)
 
 ```
-2.3.3
+2.3.4
 
 ```{r}
 str_view(words, "ine$|een$", match=TRUE)
