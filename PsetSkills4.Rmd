@@ -310,7 +310,7 @@ world_bank_pop
 
 world_bank_pop$indicator<-substring(world_bank_pop$indicator,4)
 
-world_bank_pop%>%
+wbp<-world_bank_pop%>%
   pivot_longer(
     cols = '2000':'2017', 
     names_to = "year", 
@@ -321,7 +321,19 @@ world_bank_pop%>%
     values_from = cases
   )
     
-    
+   wbp 
            
+```
+2. Data types Strings
+
+2.1
+
+
+
+
+```{r}
+x<- 'superman'
+u<-grepl("man",x) & (nchar(x)<=8)
+u
 ```
 
