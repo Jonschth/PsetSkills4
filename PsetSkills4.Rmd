@@ -191,6 +191,16 @@ glimpse(who)
 
 who
 ```
+```{r}
+who %>%
+  select(new_sp_m014:newrel_f65)%>%
+  summarise(N=sum(is.na(.)))
+
+```
+
+This is the number of explicit issin values.
+
+
 From chapter 12.6 in Hadley: 
 
 ```{r}
