@@ -127,5 +127,55 @@ pivot_wider(names_from = player,
             values_fill = 0) 
 
 ```
+1.1.7
+
+```{r}
+preg <- tribble(
+~pregnant, ~male, ~female,
+"yes", NA, 10,
+"no", 20, 12
+)
+
+preg
+```
+You need to make it longer, the variables are gender and pregnant 
+
+```{r}
+preg_new <- preg%>%
+  pivot_longer(c(male,female),
+                names_to="gender",
+                values_to='count')
+
+preg_new
+
+```
+1.1.8
+
+```{r}
+tibble(x = c("a,b,c", "d,e,f,g","h,i,j")) %>%
+separate(x, c("one", "two", "three"),
+         extra='drop')
+```
+Here the extra g is dropped altogether as being excessive
+
+```{r}
+tibble(x = c("a,b,c","d,e","f,g,i")) %>%
+separate(x, 
+         c("one","two","three"),
+         extra='drop')
+
+```
+Here the missing 3rd piece in line 2 is replaced with NA and line 3 started with f as is normal
+
+```{r}
+tibble(x = c("a,b,c","d,e","f,g,i")) %>%
+separate(x, 
+         c("one","two","three"),
+         extra="drop", 
+         fill ="left")
+
+```
+Here we have used the fill to shift the empty of line 2 to the left
+
 
 
