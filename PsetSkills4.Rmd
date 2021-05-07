@@ -17,6 +17,8 @@ library(dplyr)
 library(readr)
 install.packages("corpus")
 library(corpus)
+install.packages("htmlwidgets")
+library(htmlwidgets)
 ```
 
 
@@ -358,4 +360,22 @@ sum(str_detect(stringr::fruit, ".........."))
 ```
 
 2.3.1
+starts with a or o
+
+```{r}
+str_view(stringr::words, "^a|^o",match=TRUE) 
+
+```
+
+2.3.2
+```{r}
+str_view(words, "^[^aeiou]+$", match=TRUE)
+
+```
+2.3.3
+
+```{r}
+str_view(words, "ine$|een$", match=TRUE)
+
+```
 
