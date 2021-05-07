@@ -14,6 +14,7 @@ libraries
 ```{r}
 library(tidyr)
 library(dplyr)
+library(readr)
 ```
 
 
@@ -176,6 +177,84 @@ separate(x,
 
 ```
 Here we have used the fill to shift the empty of line 2 to the left
+
+
+1.2.
+
+1.2.1
+
+
+```{r}
+TB_data_dictionary_2021_05_07 <- read_csv("TB_data_dictionary_2021-05-07.csv")
+
+glimpse(who)
+
+who
+```
+From chapter 12.6 in Hadley: 
+
+```{r}
+who1 <- who %>%
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases", 
+    values_drop_na = TRUE
+  ) %>% 
+  mutate(
+    key = stringr::str_replace(key, "newrel", "new_rel")
+  ) %>%
+  separate(key, c("new", "var", "sexage")) %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+
+who1
+```
+1. 2.1
+
+
+
+
+```{r}
+
+
+who2 <- who %>%
+  pivot_longer(
+    cols = new_sp_m014:newrel_f65, 
+    names_to = "key", 
+    values_to = "cases"
+  ) %>% 
+  mutate(
+    key = stringr::str_replace(key, "newrel", "new_rel")
+  ) %>%
+  separate(key, c("new", "var", "sexage")) %>% 
+  select(-new, -iso2, -iso3) %>% 
+  separate(sexage, c("sex", "age"), sep = 1)
+           
+    who2
+```
+
+```{r}
+
+who2 %>%
+  select(cases)%>%
+  summarise(N=sum(is.na(cases)))
+```
+
+After the tibble has been tidied, the number of rows is 405,440.  When we count the number of rows where the number of cases is na we get 329,394 and this is there fore the number of explicitly missing values
+
+
+
+
+```{r}
+who%>%
+  complete(country,year)
+```
+
+the original who table has 7240 rows.  When we run complete on it by country hear the number of rows become 7446.  Therefore there are 206 implicit country years missing in the orignal table.
+
+If we look at the tidy table and we run complete on it, the number of rows increases from 76,046 to 80,008 so the implicitly missing rows (where cases are na) are 3962
+
 
 
 
