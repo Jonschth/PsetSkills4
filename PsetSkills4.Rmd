@@ -201,7 +201,7 @@ who %>%
 
 ```
 
-This is the number of explicit issin values.
+This is the number of explicit missing values, calculated directly from the who table.
 
 
 From chapter 12.6 in Hadley: 
@@ -254,7 +254,7 @@ who2 %>%
   summarise(N=sum(is.na(cases)))
 ```
 
-After the tibble has been tidied, the number of rows is 405,440.  When we count the number of rows where the number of cases is na we get 329,394 and this is there fore the number of explicitly missing values.
+After the tibble has been tidied, the number of rows is 405,440.  When we count the number of rows where the number of cases is na we get 329,394 and this is there fore the number of explicitly missing values calculated from the tidied table.
 
 
 
@@ -266,7 +266,7 @@ who%>%
 
 the original who table has 7240 rows.  When we run complete on it by country hear the number of rows become 7446.  Therefore there are 206 implicit country years missing in the orignal table.
 
-If we look at the tidy table and we run complete on it, the number of rows increases from 76,046 to 80,008 so the implicitly missing rows (where cases are na) are 3962
+If we look at the tidy table and we run complete on it, the number of rows increases from 76,046 to 80,008 so the implicitly missing rows (where cases are na) are 3962.  the reason for this number to be a lot higher is that when we tidy using pivot longer the table become a lot longer, resulting in more implicitly missing rows.
 
 
 1.2.2
