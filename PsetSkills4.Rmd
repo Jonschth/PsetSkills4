@@ -300,9 +300,38 @@ The reason that we need to change "newrel" to "new_rel", is that we use the unde
 ```{r}
 who1 %>%
   select(country, year, sex, cases) %>%
-  group_by(country, year,sex) %>%
+  group_by(country, year) %>%
   summarise(n=sum(cases))
 ```
+1.2.4.3
+
+```{r}
+who1 %>%
+  select(country, year, sex, cases) %>%
+  group_by(country, year,sex) %>%
+  summarise(n=sum(cases))%>%
+  pivot_wider(names_from = sex,
+              values_from = n) %>%
+  mutate(ratio=m/f)
+          
+```
+1.2.4.4
+```{r}
+who1 %>%
+  select(country, year, sex, cases) %>%
+  group_by(country, year,sex) %>%
+  summarise(n=sum(cases))%>%
+  pivot_wider(names_from = sex,
+              values_from = n) %>%
+  summarise(nf=sum(f),nm=sum(m))%>%
+  group_by(year)%>%
+  summarise(nfy=sum(nf),nmy=sum(nm))%>%
+  mutate(year_ratio=nmy/nfy)
+```
+
+
+
+
 
 1.3
 
