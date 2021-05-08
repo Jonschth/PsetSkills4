@@ -264,7 +264,7 @@ who%>%
   complete(country,year)
 ```
 
-the original who table has 7240 rows.  When we run complete on it by country hear the number of rows become 7446.  Therefore there are 206 implicit country years missing in the orignal table.
+the original who table has 7240 rows.  When we run complete on it by country hear the number of rows become 7446.  Therefore there are 206 implicit country years missing in the original table.
 
 If we look at the tidy table and we run complete on it, the number of rows increases from 76,046 to 80,008 so the implicitly missing rows (where cases are na) are 3962.  the reason for this number to be a lot higher is that when we tidy using pivot longer the table become a lot longer, resulting in more implicitly missing rows.
 
@@ -303,6 +303,10 @@ who1 %>%
   group_by(country, year) %>%
   summarise(n=sum(cases))
 ```
+1.2.4.2
+It is very difficult to find trends when looking at so much data.  We need to use plots to see how the data has been developing
+
+
 1.2.4.3
 
 ```{r}
